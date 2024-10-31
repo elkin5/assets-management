@@ -1,0 +1,41 @@
+server:
+  port: 8089
+spring:
+  application:
+    name: "ms-assets"
+  devtools:
+    add-properties: false
+  h2:
+    console:
+      enabled: true
+      path: "/h2"
+  profiles:
+    include: null
+  r2dbc:
+    options:
+      maxPendingRequests: 2000
+  r2bdc-postgres:
+    host: "localhost"
+    username: "admin"
+    password: "123"
+    database: "gestactivo"
+    schema: "schmain"
+    port: 5432
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "health,prometheus"
+  endpoint:
+    health:
+      probes:
+        enabled: true
+cors:
+  allowed-origins: "http://localhost:4200,http://localhost:8080"
+logging:
+  level:
+    io.r2dbc.postgresql.QUERY: "DEBUG"
+    io.r2dbc.postgresql.PARAM: "DEBUG"
+    org.springframework.web: DEBUG
+    org.springframework.web.reactive.result.view: DEBUG
+    org.springframework.transaction.interceptor: DEBUG
